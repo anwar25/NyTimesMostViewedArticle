@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ny_times_nav_graph.xml"
+    app:startDestination="@id/articleListFragment">
+
+    <fragment
+        android:id="@+id/articleListFragment"
+        android:name="com.nytime.android.articles.ArticleListFragment"
+        android:label="ArticleListFragment">
+        <action
+            android:id="@+id/to_articleDetailsFragment"
+            app:destination="@id/articleDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/articleDetailsFragment"
+        android:name="com.nytime.android.articles.ArticleDetailsFragment"
+        android:label="ArticleDetailsFragment">
+        <argument
+            android:name="article"
+            app:argType="com.nytime.android.articles.ArticleDataItem" />
+    </fragment>
+
+</navigation>

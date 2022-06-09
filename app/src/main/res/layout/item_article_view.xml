@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="articleDataItem"
+            type="com.nytime.android.articles.ArticleDataItem" />
+
+        <variable
+            name="item"
+            type="com.nytime.android.articles.ArticleItemView" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:selectableItemBackground"
+        android:padding="@dimen/container_margin"
+        android:layout_marginTop="@dimen/container_margin"
+        android:layout_marginEnd="@dimen/container_margin"
+        android:onClick="@{() -> item.onItemClick()}">
+
+        <ImageView
+            android:id="@+id/coverImageView"
+            android:layout_width="@dimen/recycler_item_img_size"
+            android:layout_height="@dimen/recycler_item_img_size"
+            android:scaleType="centerCrop"
+            android:padding="@dimen/recycler_item_img_padding"
+            app:imageUrlCrop="@{articleDataItem.imageUrl}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription"
+            tools:src="@drawable/ic_baseline_info_24" />
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="@+id/coverImageView"
+            app:layout_constraintEnd_toStartOf="@+id/ic_arrow"
+            app:layout_constraintStart_toEndOf="@+id/coverImageView"
+            app:layout_constraintTop_toTopOf="@+id/coverImageView">
+
+            <TextView
+                android:id="@+id/titleTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="2"
+                android:text="@{articleDataItem.title}"
+                android:textColor="@color/recycler_item_header_text"
+                android:textSize="@dimen/list_item_hdr_txt_size"
+                tools:text="This is test header for testing purpose" />
+
+            <TextView
+                android:id="@+id/authorTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/titleTextView"
+                android:layout_alignStart="@id/authorTextView"
+                android:layout_marginTop="@dimen/recycler_item_img_padding"
+                android:layout_toStartOf="@id/dateIcon"
+                android:maxLines="2"
+                android:text="@{articleDataItem.byline}"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="@dimen/list_item_subhdr_txt_size"
+                tools:text="By Anwar Shaikh" />
+
+            <ImageView
+                android:id="@+id/dateIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/ic_baseline_date_range_24"
+                android:layout_alignTop="@id/dateTextView"
+                android:layout_alignBottom="@id/dateTextView"
+                android:layout_toStartOf="@id/dateTextView"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/dateTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignBottom="@id/authorTextView"
+                android:text="@{articleDataItem.publishedDate}"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="12sp"
+                tools:text="2022-06-08" />
+        </RelativeLayout>
+
+
+
+
+       <!-- <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="@+id/coverImageView"
+            app:layout_constraintEnd_toStartOf="@+id/ic_arrow"
+            app:layout_constraintStart_toEndOf="@+id/coverImageView"
+            app:layout_constraintTop_toTopOf="@+id/coverImageView">
+
+            <TextView
+                android:id="@+id/titleTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="2"
+                android:text="@{articleDataItem.title}"
+                android:textColor="@color/recycler_item_header_text"
+                android:textSize="14sp"
+                tools:text="Whistle-Blower Complaint Sets Off a Battle Involving Trump" />
+
+            <TextView
+                android:id="@+id/authorTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:singleLine="true"
+                android:text="@{articleDataItem.byline}"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="12sp"
+                tools:text="By JULIAN E. BARNES, NICHOLAS FANDOS, MICHAEL S. SCHMIDT and MATTHEW ROSENBERG" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="end|center"
+                android:orientation="horizontal"
+                tools:ignore="UseCompoundDrawables">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/ic_baseline_date_range_24"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:id="@+id/dateTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:singleLine="true"
+                    android:text="@{articleDataItem.publishedDate}"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="12sp"
+                    tools:text="2019-09-19" />
+
+            </LinearLayout>
+        </LinearLayout>-->
+
+        <ImageView
+            android:id="@+id/ic_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/coverImageView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/coverImageView"
+            app:srcCompat="@drawable/ic_baseline_keyboard_arrow_right_24"
+            tools:ignore="ContentDescription" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>
